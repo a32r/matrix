@@ -1,0 +1,18 @@
+#test {
+	display: flex;
+	flex-flow: row wrap;
+	width: 200px;
+	margin: 20px auto 0;
+	background: silver;
+	border: 4px solid silver;
+}
+
+#test div {
+	width: 33.333%;
+	padding: 15px 0;
+	text-align: center;
+}
+
+#test div:nth-of-type(even) {
+	background: white;
+}
