@@ -1,18 +1,20 @@
 #test {
-	display: flex;
-	flex-flow: row wrap;
-	width: 200px;
-	margin: 20px auto 0;
-	background: silver;
-	border: 4px solid silver;
-}
-
-#test div {
-	width: 33.333%;
-	padding: 15px 0;
+	margin: 10px auto 0;
+	border: 3px solid silver;
 	text-align: center;
+	column-span: none;
+	border-collapse: collapse;
 }
 
-#test div:nth-of-type(even) {
-	background: white;
+#test td {
+	width: 50px;
+	height: 50px;
+}
+
+#test tr:nth-of-type(odd) td:nth-of-type(odd) {
+	background: silver;
+}
+
+#test tr:nth-of-type(even) td:nth-of-type(even) {
+	background: silver;
 }
