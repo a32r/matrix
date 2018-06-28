@@ -20,20 +20,48 @@ for (i = 0; i < m; i++) {
 // making result
 result = []
 x = y = Math.floor(matrix.length/2)
-result.push(matrix[x][y])
 coord = 'y'
 sign = '-'
+count = 1
+signCount = 2
+result.push(matrix[x][y])
+k = 1
 
-for (k = 1; k <= Math.floor(matrix.length); k++) {
+console.log('coordinates(' + x + ', ' + y + ')')
 
-	l = (sign == '+') ? k : -k
+// while (k <= Math.floor(matrix.length)) {
+while (k <= 2) {
 
-	if (coord == 'x') {
-		result.push(matrix[x+l][y])
+	for (a = 1; a <= k; a++) {
+		l = (sign == '+') ? a : -a
+
+		if (coord == 'x') {
+			x = x + l
+		}
+
+		if (coord == 'y') {
+			y = y + l
+		}
+
+		result.push(matrix[x][y])
 	}
 
-	if (coord == 'y') {
-		result.push(matrix[x][y+l])
+	console.log('coordinates(' + x + ', ' + y + ')')
+
+	coordToggle()
+
+	if (signCount == 2) {
+		signToggle()
+		signCount = 1
+	} else {
+		signCount++
+	}
+
+	if (count == 2) {
+		count = 1
+		k++
+	} else {
+		count++
 	}
 
 }
@@ -46,4 +74,4 @@ function coordToggle() {
 	coord = (coord == 'x') ? 'y' : 'x'
 }
 
-document.getElementById('result').innerHTML = coord
+document.getElementById('result').innerHTML = result
