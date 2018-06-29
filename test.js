@@ -1,4 +1,4 @@
-n = 2
+n = 3
 m = n*2-1
 
 // making matrix
@@ -17,59 +17,78 @@ for (i = 0; i < m; i++) {
 	}
 }
 
-// making result
-result = []
-x = y = Math.floor(matrix.length/2)
-coord = 'y'
-sign = '-'
-count = 1
-signCount = 2
-result.push(matrix[x][y])
-k = 1
+// making spiral
+function spiral(arr, direction = 'left') {
 
-console.log('coordinates(' + x + ', ' + y + ')')
-
-max = Math.floor(matrix.length) - 1
-while (k <= max) {
-// console.log('k = ' + Math.floor(matrix.length))
-// while (k <= 4) {
-
-	for (a = 1; a <= k; a++) {
-		if (coord == 'x') {
-			(sign == '+') ? x++ : x--
-		}
-
-		if (coord == 'y') {
-			(sign == '+') ? y++ : y--
-		}
-
-		result.push(matrix[x][y])
+	if (direction == 'left') {
+		coord = 'y'
+		sign = '-'
+		signCount = 2
 	}
 
-	console.log('coordinates(' + x + ', ' + y + ')')
-
-	coordToggle()
-
-	if (signCount == 2) {
-		signToggle()
+	if (direction == 'up') {
+		coord = 'x'
+		sign = '-'
 		signCount = 1
-	} else {
-		signCount++
-	}
-	
-	if (count == 2) {
-		if (k == max) {
-			count++
-		} else {
-			count = 1
-			k++
-		}
-	} else if (count < 2) {
-		count++
-	} else if (count > 2) {
-		break
 	}
 
+	if (direction == 'right') {
+		coord = 'y'
+		sign = '+'
+		signCount = 2
+	}
+
+	if (direction == 'down') {
+		coord = 'x'
+		sign = '+'
+		signCount = 1
+	}
+
+	result = []
+	x = y = Math.floor(arr.length/2)
+	result.push(arr[x][y])
+	count = 1
+	k = 1
+
+	max = Math.floor(arr.length) - 1
+	while (k <= max) {
+
+		for (a = 1; a <= k; a++) {
+			if (coord == 'x') {
+				(sign == '+') ? x++ : x--
+			}
+
+			if (coord == 'y') {
+				(sign == '+') ? y++ : y--
+			}
+
+			result.push(arr[x][y])
+		}
+
+		coordToggle()
+
+		if (signCount == 2) {
+			signToggle()
+			signCount = 1
+		} else {
+			signCount++
+		}
+
+		if (count == 2) {
+			if (k == max) {
+				count++
+			} else {
+				count = 1
+				k++
+			}
+		} else if (count < 2) {
+			count++
+		} else if (count > 2) {
+			break
+		}
+
+	}
+	return result
 }
 
 function signToggle() {
@@ -80,4 +99,4 @@ function coordToggle() {
 	coord = (coord == 'x') ? 'y' : 'x'
 }
 
-document.getElementById('result').innerHTML = 'Результат: ' + result
+document.getElementById('result').innerHTML = 'Результат: ' + spiral(matrix)
