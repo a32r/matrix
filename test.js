@@ -1,4 +1,4 @@
-n = 3
+n = 2
 m = n*2-1
 
 // making matrix
@@ -29,19 +29,18 @@ k = 1
 
 console.log('coordinates(' + x + ', ' + y + ')')
 
-while (k <= Math.floor(matrix.length) - 1) {
+max = Math.floor(matrix.length) - 1
+while (k <= max) {
 // console.log('k = ' + Math.floor(matrix.length))
 // while (k <= 4) {
 
 	for (a = 1; a <= k; a++) {
-		l = (sign == '+') ? 1 : -1
-
 		if (coord == 'x') {
-			x = x + l
+			(sign == '+') ? x++ : x--
 		}
 
 		if (coord == 'y') {
-			y = y + l
+			(sign == '+') ? y++ : y--
 		}
 
 		result.push(matrix[x][y])
@@ -50,8 +49,6 @@ while (k <= Math.floor(matrix.length) - 1) {
 	console.log('coordinates(' + x + ', ' + y + ')')
 
 	coordToggle()
-	
-	// здесь уменьшить на единицу значение count если k равен максимуму
 
 	if (signCount == 2) {
 		signToggle()
@@ -59,12 +56,18 @@ while (k <= Math.floor(matrix.length) - 1) {
 	} else {
 		signCount++
 	}
-
+	
 	if (count == 2) {
-		count = 1
-		k++
-	} else {
+		if (k == max) {
+			count++
+		} else {
+			count = 1
+			k++
+		}
+	} else if (count < 2) {
 		count++
+	} else if (count > 2) {
+		break
 	}
 
 }
